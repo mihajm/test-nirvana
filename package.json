@@ -1,9 +1,11 @@
 {
   "name": "test-nirvana",
-  "version": "0.0.0",
+  "version": "7.11.33",
   "description": "Stay in zen-mode as your code is fully tested",
   "keywords": [
     "cli",
+    "numerology",
+    "power-versioning",
     "testing",
     "typescript"
   ],
@@ -30,7 +32,8 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "lint": "oxlint --deny-warnings .",
-    "prepack": "bun run check && bun run build",
+    "prepack": "bun run check && bun run release:verify && bun run build",
+    "release:verify": "node --experimental-strip-types scripts/verify-release.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"

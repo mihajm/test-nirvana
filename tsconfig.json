@@ -14,5 +14,5 @@
     "target": "ES2024",
     "types": ["node", "vitest/globals"]
   },
-  "include": ["src/**/*.ts", "tsdown.config.ts", "vitest.config.ts"]
+  "include": ["scripts/**/*.ts", "src/**/*.ts", "tsdown.config.ts", "vitest.config.ts"]
 }

@@ -1,8 +1,18 @@
-export interface NirvanaOptions {
-  readonly name?: string;
-}
-
-/** Returns the sacred greeting without performing any side effects. */
-export function reachNirvana({ name = 'world' }: NirvanaOptions = {}): string {
-  return `testing nirvana achieved, ${name} ✨`;
-}
+export {
+  POWER_NUMBERS,
+  checkCommitVibes,
+  getLatestCommitHash,
+  inspectCommitAura,
+  reduceToPowerNumber,
+  type CommitAura,
+  type PowerNumber,
+  type Vibe,
+} from './core.ts';
+export { SIGILS, type Sigil } from './sigils.ts';
+export {
+  isPowerVersion,
+  nextPowerVersion,
+  parsePowerVersion,
+  type PowerVersion,
+  type PowerVersionComponent,
+} from './version.ts';
