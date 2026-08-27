@@ -33,6 +33,20 @@ fn calculates_a_hexadecimal_commit_aura_deterministically() {
 }
 
 #[test]
+fn curses_the_impossible_all_zero_hash() {
+    let aura = inspect_commit_aura("0000000").expect("an all-zero hash is valid hex");
+    assert_eq!(
+        aura,
+        CommitAura {
+            destiny_number: 0,
+            hash: "0000000".to_string(),
+            total: 0,
+            vibe: Vibe::Cursed,
+        }
+    );
+}
+
+#[test]
 fn normalizes_superficial_casing_and_whitespace() {
     let aura = inspect_commit_aura("  AAAAAA  ").expect("AAAAAA is a valid hash");
     assert_eq!(aura.hash, "aaaaaa");

@@ -45,10 +45,8 @@ pub struct CommitAura {
     pub vibe: Vibe,
 }
 
-/// Mirrors `DESTINY_VIBES` in `src/core.ts`. Note `Vibe::Cursed` is never returned here — this is
-/// a faithful port of the TypeScript source, where `CURSED` is dead code (see `error::Error::InvalidTotal`
-/// and the `--hash 0` case: an invalid total is rejected by `reduce_to_power_number` before any
-/// `Vibe` is ever produced, so `CURSED` can never actually surface from `inspect_commit_aura`).
+/// Mirrors `DESTINY_VIBES` in `src/core.ts`. `Vibe::Cursed` has no power number; it surfaces only
+/// from `inspect_commit_aura` when a hash of all zeros sums to nothing.
 fn destiny_vibe(power_number: PowerNumber) -> Vibe {
     match power_number {
         1 => Vibe::Neutral,
@@ -112,6 +110,15 @@ pub fn inspect_commit_aura(hash: &str) -> Result<CommitAura, Error> {
         .chars()
         .map(|c| character_value(c) as u64)
         .sum();
+    if total == 0 {
+        return Ok(CommitAura {
+            destiny_number: 0,
+            hash: normalized_hash,
+            total,
+            vibe: Vibe::Cursed,
+        });
+    }
+
     let destiny_number = reduce_to_power_number(total as f64)?;
 
     Ok(CommitAura {

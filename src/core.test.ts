@@ -29,6 +29,15 @@ describe('inspectCommitAura', () => {
     });
   });
 
+  it('curses the impossible all-zero hash', () => {
+    expect(inspectCommitAura('0000000')).toEqual({
+      destinyNumber: 0,
+      hash: '0000000',
+      total: 0,
+      vibe: 'CURSED',
+    });
+  });
+
   it('normalizes superficial casing and whitespace', () => {
     expect(inspectCommitAura('  AAAAAA  ').hash).toBe('aaaaaa');
   });

@@ -32,7 +32,8 @@ NEUTRAL — a1b2c3 resolves through 21 to 3
 
 Digits retain their value. Hexadecimal letters use their alphabetic positions (`a = 1` through
 `f = 6`). The sum is repeatedly reduced by decimal digit addition. Master numbers 11, 22, and 33
-are never reduced. Pass `--json` for the complete machine-readable aura.
+are never reduced. A hash of only zeros sums to nothing, has no destiny number, and is
+CURSED. Pass `--json` for the complete machine-readable aura.
 
 ## Power Versions
 

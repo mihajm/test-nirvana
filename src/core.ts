@@ -6,7 +6,7 @@ export type PowerNumber = (typeof POWER_NUMBERS)[number];
 export type Vibe = 'IMMACULATE' | 'GOOD' | 'NEUTRAL' | 'CHAOTIC' | 'CURSED';
 
 export interface CommitAura {
-  readonly destinyNumber: PowerNumber;
+  readonly destinyNumber: PowerNumber | 0;
   readonly hash: string;
   readonly total: number;
   readonly vibe: Vibe;
@@ -51,6 +51,10 @@ export function inspectCommitAura(hash: string): CommitAura {
   }
 
   const total = [...normalizedHash].reduce((sum, character) => sum + characterValue(character), 0);
+  if (total === 0) {
+    return { destinyNumber: 0, hash: normalizedHash, total, vibe: 'CURSED' };
+  }
+
   const destinyNumber = reduceToPowerNumber(total);
   return { destinyNumber, hash: normalizedHash, total, vibe: DESTINY_VIBES[destinyNumber] };
 }
