@@ -1,0 +1,9 @@
+[package]
+name = "test-nirvana"
+version = "7.11.33"
+edition = "2021"
+description = "Stay in zen-mode as your code is fully tested (Rust port)"
+license = "MIT"
+publish = false
+
+[dependencies]
